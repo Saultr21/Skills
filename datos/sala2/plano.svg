@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" style="background-color: rgb(205, 205, 205);">
+  <g transform="matrix(1, 0, 0, 1, 125, 40)">
+    <rect x="0" y="0" width="150" height="40" style="stroke: rgb(0, 0, 0); fill: rgb(170, 153, 205);"></rect>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;"><tspan x="20" y="15">Mesa: 1</tspan></text>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;"><tspan x="20" y="30">Personas: 8</tspan></text>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 80, 150)">
+    <ellipse style="stroke: rgb(0, 0, 0); fill: rgb(170, 153, 205);" cx="0" cy="0" rx="45" ry="45"/>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;"><tspan x="-30" y="-10">Mesa: 2</tspan></text>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;"><tspan x="-30" y="10">Personas: 9</tspan></text>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 320, 150)">
+    <ellipse style="stroke: rgb(0, 0, 0); fill: rgb(170, 153, 205);" cx="0" cy="0" rx="45" ry="45"/>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;" x="0"><tspan x="-30" y="-10">Mesa: 3</tspan></text>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;"><tspan x="-30" y="10">Personas: 9</tspan></text>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 200, 240)">
+    <ellipse style="stroke: rgb(0, 0, 0); fill: rgb(170, 153, 205);" cx="0" cy="0" rx="45" ry="45"/>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;" x="0"><tspan x="-30" y="-10">Mesa: 4</tspan></text>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;"><tspan x="-30" y="10">Personas: 9</tspan></text>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 80, 330)">
+    <ellipse style="stroke: rgb(0, 0, 0); fill: rgb(170, 153, 205);" cx="0" cy="0" rx="45" ry="45"/>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;"><tspan x="-30" y="-10">Mesa: 5</tspan></text>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;"><tspan x="-30" y="10">Personas: 9</tspan></text>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 320, 330)">
+    <ellipse style="stroke: rgb(0, 0, 0); fill: rgb(170, 153, 205);" cx="0" cy="0" rx="45" ry="45"/>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;"><tspan x="-30" y="-10">Mesa: 6</tspan></text>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;"><tspan x="-30" y="10">Personas: 9</tspan></text>
+  </g>
+  <g transform="matrix(1, 0, 0, 1, 200, 420)">
+    <ellipse style="stroke: rgb(0, 0, 0); fill: rgb(170, 153, 205);" cx="0" cy="0" rx="45" ry="45"/>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;"><tspan x="-30" y="-10">Mesa: 7</tspan></text>
+    <text style="fill: rgb(0, 0, 0); font-family: Arial, sans-serif; font-size: 12px;"><tspan x="-30" y="10">Personas: 9</tspan></text>
+  </g>
+</svg>
