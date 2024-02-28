@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once "config.php";
 include("funciones.php");
 if (isset($_POST['cerrar_sesion'])) {
     session_destroy();
