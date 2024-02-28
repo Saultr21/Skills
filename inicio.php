@@ -63,7 +63,7 @@ if (isset($_POST['cerrar_sesion'])) {
 
 
     <div class="container">
-        <div class="card mb-3">
+        <!--<div class="card mb-3">
             <div class="row g-0">
                 <div class="col-md-4">
                     <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
@@ -193,8 +193,73 @@ if (isset($_POST['cerrar_sesion'])) {
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
+                !-->
+        <?php {
+            $base_de_datos = obtenerBaseDeDatos();
+            $sql = 'SELECT * FROM salas';
+            foreach ($base_de_datos->query($sql) as $row) {
+                $sala = $row->sala;
+                $nombre = $row->nombre;
+                $imagen1 = $row->imagen1;
+                $imagen2 = $row->imagen3;
+                $imagen3 = $row->imagen3; ?>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Sala<?php echo $sala ?></h5>
+                                <p class="card-text"><?php echo $nombre ?></p>
+                                <form class="d-flex">
+                                    <a href="#" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Reservar</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                        <div class="card-body">
+                                <h5 class="card-title">Sala<?php echo $sala ?></h5>
+                                <p class="card-text"><?php echo $nombre ?></p>
+                                <form class="d-flex">
+                                    <a href="#" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Reservar</a>
+                                </form>
+                            </div>
+                            <div id="carousel3" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carousel3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carousel3" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carousel3" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                    <button type="button" data-bs-target="#carousel3" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="datos/<?php echo $imagen1 ?>" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="datos/<?php echo $imagen2 ?>" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="datos/<?php echo $imagen3 ?>" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                <?php
+            }
+        }
+                ?>
+                    </div>
+                </div>
     </div>
 </body>
 
