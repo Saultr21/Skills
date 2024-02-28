@@ -25,7 +25,7 @@ if (isset($_POST['cerrar_sesion'])) {
 </head>
 
 <body class="background-inicio">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -34,15 +34,15 @@ if (isset($_POST['cerrar_sesion'])) {
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+
                     </li>
                 </ul>
                 <form class="d-flex">
                     <div class="pr-3 mt-2">
                         <?php if (isset($_SESSION['correo'])) : ?>
-                            <span style="margin-right: 10px;"><?php echo "Usuario: " . $_SESSION['correo']; ?></span>
+                            <span style="margin-right: 10px;"><?php echo "Usuario: " . htmlspecialchars($_SESSION['correo']); ?></span>
                             <form action="" method="POST" style="display: inline;">
-                                <a href="logout.php">Cerrar sesión</a>
+                                <a class="btn btn-danger" href="logout.php">Cerrar sesión</a>
                             </form>
                         <?php elseif (!isset($_SESSION['correo'])) : ?>
                             <a href="login_form.php" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Iniciar sesión</a>
@@ -59,208 +59,66 @@ if (isset($_POST['cerrar_sesion'])) {
         </div>
     </div>
     <br>
-
-
-
-    <div class="container">
-        <!--<div class="card mb-3">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <div id="carousel1" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            <button type="button" data-bs-target="#carousel1" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    <?php {
+        $base_de_datos = obtenerBaseDeDatos();
+        $sql = 'SELECT * FROM salas';
+        $contador = 0;
+        foreach ($base_de_datos->query($sql) as $row) {
+            $sala = $row->sala;
+            $nombre = $row->nombre;
+            $aforo = $row->aforo;
+            $minimo = $row->minimo;
+            $imagen1 = $row->imagen1;
+            $imagen2 = $row->imagen3;
+            $imagen3 = $row->imagen3;
+            $reservado = $row->reservado;
+            $contador += 1; ?>
+            <div class="d-flex justify-content-center mb-4  p-2">
+                <div class="card fondo-tarjeta">
+                    <div class="row g-4 ">
+                        <div class="col-md-6">
+                            <img src="datos/<?php echo $imagen1 ?>" class="img-fluid imagen" alt="...">
                         </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active d-flex justify-content-center">
-                                <img src="datos/sala1/plano.svg" class="d-block imagen" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="datos/sala1/affair-1238428_640.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="datos/sala1/affair-1238429_640.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="datos/sala1/affair-1238434_640.jpg" class="d-block w-100" alt="...">
+                        <div class="col-md-6 ">
+                            <div class="card-body container ">
+                                <div class="d-flex justify-content-center">
+                                    <h5 class="card-text mt-1 mb-3"><?php echo $nombre ?></h5>
+                                </div>
+                                    <div>
+                                    <p>Aforo: <?php echo $aforo?></p>
+                                    <p>Comensales mínimos: <?php echo $minimo?>
+                                    </div>
+                                </div>
+                                
+                                <?php if (isset($_SESSION['correo']) && ($reservado==0)) : ?>
+                                    <div class="d-flex justify-content-center boton-tarjeta mt-5 mb-2">
+                                    <form class="d-flex">
+                                        <a href="reserva.php<?php echo "?sala="."$sala"?>" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Reservar</a>
+                                    </form>
+                                </div>
+                                <?php elseif (isset($_SESSION['correo']) && ($reservado==1)) : ?>
+                                     <div class="d-flex justify-content-center boton-tarjeta mt-5 mb-2">
+                                    <form class="d-flex">
+                                        <a href="reserva.php" class="btn btn-primary disabled" tabindex="-1" role="button" aria-disabled="true">Ya reservado</a>
+                                    </form>
+                                </div>
+                                <?php endif; ?>
+
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Sala 1</h5>
-                        <p class="card-text">Sala 1</p>
-                        <form class="d-flex">
-                            <a href="#" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Reservar</a>
-                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <div id="carousel2" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            <button type="button" data-bs-target="#carousel2" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active d-flex justify-content-center">
-                                <img src="datos/sala2/plano.png" class="d-block imagen" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="datos/sala2/dinner-547217_640.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="datos/sala2/dinner-547219_640.jpg" class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel2" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carousel2" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Sala 2</h5>
-                        <p class="card-text">Sala 2</p>
-                        <form class="d-flex">
-                            <a href="#" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Reservar</a>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card mb-3">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <div id="carousel3" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carousel3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carousel3" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carousel3" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            <button type="button" data-bs-target="#carousel3" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <img src="datos/sala1/plano.svg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="datos/sala1/affair-1238428_640.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="datos/sala1/affair-1238429_640.jpg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="datos/sala1/affair-1238434_640.jpg" class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">Sala 3</h5>
-                        <p class="card-text">Sala 3</p>
-                        <form class="d-flex">
-                            <a href="#" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Reservar</a>
-                        </form>
-                    </div>
-                </div>
-                !-->
-        <?php {
-            $base_de_datos = obtenerBaseDeDatos();
-            $sql = 'SELECT * FROM salas';
-            foreach ($base_de_datos->query($sql) as $row) {
-                $sala = $row->sala;
-                $nombre = $row->nombre;
-                $imagen1 = $row->imagen1;
-                $imagen2 = $row->imagen3;
-                $imagen3 = $row->imagen3; ?>
-                <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Sala<?php echo $sala ?></h5>
-                                <p class="card-text"><?php echo $nombre ?></p>
-                                <form class="d-flex">
-                                    <a href="#" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Reservar</a>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                        <div class="card-body">
-                                <h5 class="card-title">Sala<?php echo $sala ?></h5>
-                                <p class="card-text"><?php echo $nombre ?></p>
-                                <form class="d-flex">
-                                    <a href="#" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Reservar</a>
-                                </form>
-                            </div>
-                            <div id="carousel3" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-indicators">
-                                    <button type="button" data-bs-target="#carousel3" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                    <button type="button" data-bs-target="#carousel3" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                    <button type="button" data-bs-target="#carousel3" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                    <button type="button" data-bs-target="#carousel3" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                                </div>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <img src="datos/<?php echo $imagen1 ?>" class="d-block w-100" alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="datos/<?php echo $imagen2 ?>" class="d-block w-100" alt="...">
-                                    </div>
-                                    <div class="carousel-item">
-                                        <img src="datos/<?php echo $imagen3 ?>" class="d-block w-100" alt="...">
-                                    </div>
-                                </div>
-                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
-                        </div>
-                <?php
-            }
+
+    <?php
         }
-                ?>
-                    </div>
-                </div>
+    }
+    ?>
+    </div>
+    </div>
     </div>
 </body>
 
 </html>
+
+

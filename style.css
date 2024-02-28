@@ -3,6 +3,12 @@
 }
 
 .imagen {
-    height: 300px;
-    width: 300px;
+    border-radius: 5px;
+}
+
+.fondo-tarjeta {
+    background-color: rgb(149, 190, 216);
+    border-radius: 12px;
+    color: black;
+
 }

@@ -1,6 +1,7 @@
 <?php
 # Nota: no estamos haciendo validaciones
 $correo = $_POST["correo"];
+
 $palabra_secreta = $_POST["palabra_secreta"];
 
 # Luego de haber obtenido los valores, ya podemos comprobar
