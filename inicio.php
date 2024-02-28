@@ -25,12 +25,12 @@ if (isset($_POST['cerrar_sesion'])) {
 </head>
 
 <body class="background-inicio">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light text-white bg-dark sticky-top">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="#">Salas</a>
+            <a class="navbar-brand text-white" href="#">Salas</a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -93,7 +93,7 @@ if (isset($_POST['cerrar_sesion'])) {
                                 <?php if (isset($_SESSION['correo']) && ($reservado==0)) : ?>
                                     <div class="d-flex justify-content-center boton-tarjeta mt-5 mb-2">
                                     <form class="d-flex">
-                                        <a href="reserva.php<?php echo "?sala="."$sala"?>" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Reservar</a>
+                                        <a href="reserva.php<?php echo "?sala="."$sala"?> <?php echo "&minimo="."$minimo"?> <?php echo "&aforo="."$aforo"?>" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">Reservar</a>
                                     </form>
                                 </div>
                                 <?php elseif (isset($_SESSION['correo']) && ($reservado==1)) : ?>
@@ -114,9 +114,6 @@ if (isset($_POST['cerrar_sesion'])) {
         }
     }
     ?>
-    </div>
-    </div>
-    </div>
 </body>
 
 </html>

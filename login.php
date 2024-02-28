@@ -9,7 +9,7 @@ $palabra_secreta = $_POST["palabra_secreta"];
 include_once "funciones.php";
 $logueadoConExito = login($correo, $palabra_secreta);
 if ($logueadoConExito) {
-    # Redirigir a secreta
+    # Redirigir 
     header("Location: inicio.php");
     # Y salir
     exit;
